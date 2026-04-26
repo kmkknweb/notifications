@@ -22,12 +22,9 @@ async function redis(cmd) {
   return data.result;
 }
 
-module.exports = async (req, res) => {
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
-  }
 
+
+  
   const action = req.query.action;
 
   // 🔔 subscribe
