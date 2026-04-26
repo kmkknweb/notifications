@@ -23,7 +23,20 @@ async function redis(cmd) {
 }
 
 
+module.exports = async (req, res) => {
+  // ─── เพิ่ม 3 บรรทัดนี้ ────────────────────────────
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  // ────────────────────────────────────────────────────
 
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
+  const action = req.query.action;
+  // ... โค้ดที่เหลือเหมือนเดิมทุกอย่าง
   
   const action = req.query.action;
 
