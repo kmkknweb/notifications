@@ -6,11 +6,10 @@ webpush.setVapidDetails(
   process.env.VAPID_PRIVATE_KEY
 );
 
-const REDIS_URL   = process.env.UPSTASH_REDIS_REST_URL
-                 || process.env.KV_REST_API_URL
-                 || process.env.REDIS_URL;
-const REDIS_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN
-                 || process.env.KV_REST_API_TOKEN;
+const REDIS_URL   = process.env.MY_REDIS_URL;
+const REDIS_TOKEN = process.env.MY_REDIS_TOKEN;
+
+
 
 async function redis(cmd) {
   const res = await fetch(REDIS_URL, {
