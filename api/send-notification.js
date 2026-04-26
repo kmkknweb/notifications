@@ -31,8 +31,7 @@ module.exports = async function handler(req, res) {
   const action = req.query.action;
 
   if (action === 'subscribe' && req.method === 'POST') {
-    const subscription = req.body;
-    const key = 'sub:' + Buffer.from(subscription.endpoint).toString('base64').slice(0, 20);
+    const subscription = req.body;const key = 'sub:' + Buffer.from(subscription.endpoint).toString('base64').slice(-20);
     await redisCmd(['SET', key, JSON.stringify(subscription)]);
     return res.status(201).json({ message: 'Subscribed!' });
   }
