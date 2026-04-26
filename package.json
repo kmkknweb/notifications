@@ -1,0 +1,8 @@
+{
+  "name": "notifications",
+  "version": "1.0.0",
+  "dependencies": {
+    "web-push": "^3.6.7",
+    "@vercel/kv": "^2.0.0"
+  }
+}
