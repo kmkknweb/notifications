@@ -131,10 +131,22 @@
     try {
       const permission = await Notification.requestPermission();
       if (permission !== 'granted') { log('User ไม่อนุญาต', 'err'); return; }
-      const subscription = await swReg.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
-      });
+
+
+      const oldSubscription = await swReg.pushManager.getSubscription();
+
+if (oldSubscription) {
+  await oldSubscription.unsubscribe();
+  log('ลบ subscription เก่าแล้ว', 'ok');
+}
+
+const subscription = await swReg.pushManager.subscribe({
+  userVisibleOnly: true,
+  applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
+});
+
+
+      
       await fetch(`${API_BASE}/api/send-notification?action=subscribe`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
