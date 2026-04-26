@@ -12,7 +12,7 @@ webpush.setVapidDetails(VAPID_EMAIL, VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY);
 // ตอน server จริงพร้อม → ย้ายไปเก็บใน Database
 let subscriptions = [];
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Allow CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
